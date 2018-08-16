@@ -6,6 +6,7 @@
 
 #define NUM_OF_CARD 10
 #define DISTANCE_BETWEEN_CARD 5
+#define CARD_LINE 1
 
 using namespace std;
 
@@ -66,9 +67,13 @@ int main()
 	*/
 
 	// 뒤집어진 카드가 생성됨
+	for (int i = 0; i < NUM_OF_CARD; i++) {
+		gotoxy(i*DISTANCE_BETWEEN_CARD, 0);
+		cout << " "<<i;
+	}
 
 	for (int i = 0; i < NUM_OF_CARD; i++) {
-		gotoxy(i*DISTANCE_BETWEEN_CARD, 1);
+		gotoxy(i*DISTANCE_BETWEEN_CARD, CARD_LINE);
 		cout << "■";
 	}
 	while (1)
@@ -83,17 +88,19 @@ int main()
 			cout << "           ";
 			gotoxy(15, 10);
 			cin >> oneDigitPlayerInput1;
-			if (cardFlag[oneDigitPlayerInput1] != 1)
+			if (cardFlag[oneDigitPlayerInput1] != 1) // 이미 맞춘 숫자는 입력되지 않음
 			{
-				if (!(oneDigitPlayerInput1 / 10) && cardFlag[oneDigitPlayerInput1] != 1)
+				if (!(oneDigitPlayerInput1 / 10)) // 하나의 숫자만을 입력받음
 				{
 					gotoxy(1, 11);
-					cout << "                                                             ";
+					cout << "                                                                                        ";
 					break;
 				}
 			}
 			else
 			{
+				gotoxy(1, 11);
+				cout << "                                                                                        ";
 				gotoxy(1, 11);
 				cout << "이미 맞춘 숫자는 입력할 수 없습니다. 다시 입력하세요.";
 			}
@@ -116,15 +123,18 @@ int main()
 			cin >> oneDigitPlayerInput2;
 			if (cardFlag[oneDigitPlayerInput2] != 1)
 			{
-				if ((!(oneDigitPlayerInput2 / 10) && !(oneDigitPlayerInput2 == oneDigitPlayerInput1)))
+				if ((!(oneDigitPlayerInput2 / 10) && !(oneDigitPlayerInput2 == oneDigitPlayerInput1))) 
+					// 하나의 숫자만을 입력받음 && 첫번재 숫자와 동일한 입력은 받지 않음
 				{
 					gotoxy(1, 11);
-					cout << "                                                           ";
+					cout << "                                                                                        ";
 					break;
 				}
 			}
 			else
 			{
+				gotoxy(1, 11);
+				cout << "                                                                                        ";
 				gotoxy(1, 11);
 				cout << "이미 맞춘 숫자는 입력할 수 없습니다. 다시 입력하세요.";
 			}
@@ -141,9 +151,9 @@ int main()
 													이미 맞춘 카드는 그대로 있어야 함.	*/
 		if (cards[oneDigitPlayerInput1] != cards[oneDigitPlayerInput2])
 		{
-			gotoxy(oneDigitPlayerInput1*DISTANCE_BETWEEN_CARD, 1);
+			gotoxy(oneDigitPlayerInput1*DISTANCE_BETWEEN_CARD, CARD_LINE);
 			cout << "■";
-			gotoxy(oneDigitPlayerInput2*DISTANCE_BETWEEN_CARD, 1);
+			gotoxy(oneDigitPlayerInput2*DISTANCE_BETWEEN_CARD, CARD_LINE);
 			cout << "■";
 		}
 		else
@@ -153,7 +163,12 @@ int main()
 			correct++;
 		}
 		if (correct == NUM_OF_CARD / 2)
+		{
+			gotoxy(1, 11);
+			cout << "끝"<< endl;
+			system("pause");
 			break;
+		}
 		/*
 		for (int i = 0; i < NUM_OF_CARD; i++) {
 			gotoxy(i*DISTANCE_BETWEEN_CARD, 4);
