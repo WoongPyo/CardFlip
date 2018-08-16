@@ -3,62 +3,27 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <time.h>
+#include "main.h"
 
 #define NUM_OF_CARD 10
-#define DISTANCE_BETWEEN_CARD 5
+#define DISPALY_TAB_BETWEEN_CARDS 5
+#define MAX_CARD_NUM NUM_OF_CARD/2
+#define NUM_LINE 0
 #define CARD_LINE 1
 
 using namespace std;
 
-void gotoxy(int x, int y)
-{
-	COORD CursorPosition = { x, y };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), CursorPosition);
-}
-
-// 
-void SuffleCards(int* card)
-{
-	// 삽입 방식
-	int flagOfNum[NUM_OF_CARD + 1] = { 0, };
-
-	// 난수 생성기 시드 지정
-	srand((unsigned int)time(NULL));
-
-	int count = 0;
-	do
-	{
-		int number = (rand() % NUM_OF_CARD) ;
-		if (flagOfNum[number] == 0)
-		{
-			card[count] = number;
-			flagOfNum[number] = 1;
-			count++;
-		}
-	} while (count < NUM_OF_CARD);
-}
-
-void MakeDuplicate(int* changeCard)
-{
-	for (int i = 0; i < NUM_OF_CARD / 2; i++)
-	{
-		int numOfChange = i + NUM_OF_CARD / 2;
-		for (int j = 0; j < NUM_OF_CARD; j++)
-		{
-			if (changeCard[j] == numOfChange)
-				changeCard[j] = i;
-		}
-	}
-}
 
 int main()
 {
-	int cardFlag[NUM_OF_CARD] = {0};
-	int correct=0;
-	// 숫자당 2개씩 임의의 위치에 들어감
 	int cards[NUM_OF_CARD];
+	int cardFlag[NUM_OF_CARD] = {0};
+	int correctCount=0;
+	// 숫자당 2개씩 임의의 위치에 들어감
+
 	SuffleCards(cards);
-	MakeDuplicate(cards);
+	
+	DuplicateCardNumber(cards);
 	/*
 	for (int i = 0; i < NUM_OF_CARD; ++i)
 		printf("%d ", cards[i]);
@@ -68,12 +33,12 @@ int main()
 
 	// 뒤집어진 카드가 생성됨
 	for (int i = 0; i < NUM_OF_CARD; i++) {
-		gotoxy(i*DISTANCE_BETWEEN_CARD, 0);
-		cout << " "<<i;
+		gotoxy(i*DISPALY_TAB_BETWEEN_CARDS, NUM_LINE);
+		cout << " " << i;
 	}
 
 	for (int i = 0; i < NUM_OF_CARD; i++) {
-		gotoxy(i*DISTANCE_BETWEEN_CARD, CARD_LINE);
+		gotoxy(i*DISPALY_TAB_BETWEEN_CARDS, CARD_LINE);
 		cout << "■";
 	}
 	while (1)
@@ -106,7 +71,7 @@ int main()
 			}
 		}
 		// 첫번재 선택된 카드가 뒤집어짐 <-- 선택된 카드는 그대로 둠
-		gotoxy(oneDigitPlayerInput1*DISTANCE_BETWEEN_CARD, 1);
+		gotoxy(oneDigitPlayerInput1*DISPALY_TAB_BETWEEN_CARDS, 1);
 
 		cout << cards[oneDigitPlayerInput1];
 
@@ -140,7 +105,7 @@ int main()
 			}
 		}
 		// 선택된 카드가 뒤집어짐 <-- 0.5초 보여줌
-		gotoxy(oneDigitPlayerInput2*DISTANCE_BETWEEN_CARD, 1);
+		gotoxy(oneDigitPlayerInput2*DISPALY_TAB_BETWEEN_CARDS, 1);
 
 		cout << cards[oneDigitPlayerInput2];
 		Sleep(500);
@@ -151,18 +116,18 @@ int main()
 													이미 맞춘 카드는 그대로 있어야 함.	*/
 		if (cards[oneDigitPlayerInput1] != cards[oneDigitPlayerInput2])
 		{
-			gotoxy(oneDigitPlayerInput1*DISTANCE_BETWEEN_CARD, CARD_LINE);
+			gotoxy(oneDigitPlayerInput1*DISPALY_TAB_BETWEEN_CARDS, CARD_LINE);
 			cout << "■";
-			gotoxy(oneDigitPlayerInput2*DISTANCE_BETWEEN_CARD, CARD_LINE);
+			gotoxy(oneDigitPlayerInput2*DISPALY_TAB_BETWEEN_CARDS, CARD_LINE);
 			cout << "■";
 		}
 		else
 		{
 			cardFlag[oneDigitPlayerInput1] = 1;
 			cardFlag[oneDigitPlayerInput2] = 1;
-			correct++;
+			correctCount++;
 		}
-		if (correct == NUM_OF_CARD / 2)
+		if (correctCount == NUM_OF_CARD / 2)
 		{
 			gotoxy(1, 11);
 			cout << "끝"<< endl;
@@ -171,14 +136,53 @@ int main()
 		}
 		/*
 		for (int i = 0; i < NUM_OF_CARD; i++) {
-			gotoxy(i*DISTANCE_BETWEEN_CARD, 4);
+			gotoxy(i*DISPALY_TAB_BETWEEN_CARDS, 4);
 			cout << cardFlag[i];
 		}
 		*/
 
 	}
 
-
-
 	return 0;
+}
+
+void DuplicateCardNumber(int* cards)
+{
+	for (int i = 0; i < MAX_CARD_NUM; i++)
+	{
+		int numOfChange = i + MAX_CARD_NUM;
+		for (int j = 0; j < NUM_OF_CARD; j++)
+		{
+			if (cards[j] == numOfChange)
+				cards[j] = i;
+		}
+	}
+}
+
+void SuffleCards(int* card)
+{
+	// 삽입 방식
+	int flagOfNum[NUM_OF_CARD] = { 0, };
+
+	// 난수 생성기 시드 지정
+	srand((unsigned int)time(NULL));
+
+	int count = 0;
+	do
+	{
+		int number = (rand() % NUM_OF_CARD);
+		if (flagOfNum[number] == FALSE)
+		{
+			card[count] = number;
+			flagOfNum[number] = TRUE;
+			count++;
+		}
+	} while (count < NUM_OF_CARD);
+}
+
+
+void gotoxy(int x, int y)
+{
+	COORD CursorPosition = { (short)x, (short)y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), CursorPosition);
 }
