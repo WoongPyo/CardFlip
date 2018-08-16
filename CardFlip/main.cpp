@@ -58,10 +58,12 @@ int main()
 	int cards[NUM_OF_CARD];
 	SuffleCards(cards);
 	MakeDuplicate(cards);
+	/*
 	for (int i = 0; i < NUM_OF_CARD; ++i)
 		printf("%d ", cards[i]);
 
 	printf("\n");
+	*/
 
 	// 뒤집어진 카드가 생성됨
 
@@ -152,11 +154,12 @@ int main()
 		}
 		if (correct == NUM_OF_CARD / 2)
 			break;
-
+		/*
 		for (int i = 0; i < NUM_OF_CARD; i++) {
 			gotoxy(i*DISTANCE_BETWEEN_CARD, 4);
 			cout << cardFlag[i];
 		}
+		*/
 
 	}
 
