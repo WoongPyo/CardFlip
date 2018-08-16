@@ -9,7 +9,7 @@
 
 #### **최적화 시간 계산 프로그램**
 
-<img width = "500" src = "https://user-images.githubusercontent.com/35987737/44179645-f3788a00-a132-11e8-964c-cf3473ec4962.png">
+<img width = "500" src = "https://user-images.githubusercontent.com/35987737/44181139-127b1a00-a13b-11e8-8026-5f8c9016c1fe.png">
 
 [입력 받는 것]
 
