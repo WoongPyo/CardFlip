@@ -116,11 +116,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Choose.cpp" />
+    <ClCompile Include="InputOne.cpp" />
+    <ClCompile Include="InputTwo.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Print.cpp" />
+    <ClCompile Include="Result.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
+    <ClInclude Include="Choose.h" />
+    <ClInclude Include="InputOne.h" />
+    <ClInclude Include="InputTwo.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="Print.h" />
+    <ClInclude Include="Result.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
