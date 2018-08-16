@@ -38,19 +38,6 @@ void SuffleCards(int* card)
 	} while (count < NUM_OF_CARD);
 }
 
-void MakeDuplicate(int* changeCard)
-{
-	for (int i = 0; i < NUM_OF_CARD / 2; i++)
-	{
-		int numOfChange = i + NUM_OF_CARD / 2;
-		for (int j = 0; j < NUM_OF_CARD; j++)
-		{
-			if (changeCard[j] == numOfChange)
-				changeCard[j] = i;
-		}
-	}
-}
-
 int main()
 {
 	int cardFlag[NUM_OF_CARD] = {0};
@@ -58,7 +45,16 @@ int main()
 	// 숫자당 2개씩 임의의 위치에 들어감
 	int cards[NUM_OF_CARD];
 	SuffleCards(cards);
-	MakeDuplicate(cards);
+
+	for (int i = 0; i < NUM_OF_CARD / 2; i++)
+	{
+		int numOfChange = i + NUM_OF_CARD / 2;
+		for (int j = 0; j < NUM_OF_CARD; j++)
+		{
+			if (cards[j] == numOfChange)
+				cards[j] = i;
+		}
+	}
 	/*
 	for (int i = 0; i < NUM_OF_CARD; ++i)
 		printf("%d ", cards[i]);
