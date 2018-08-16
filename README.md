@@ -4,3 +4,5 @@
 
 <img width = "500" src = "https://user-images.githubusercontent.com/35987737/44181139-127b1a00-a13b-11e8-8026-5f8c9016c1fe.png">
 
+                       0 1 2 3 4 5 6 7 8 9
+5 3 4 2 1 2 4 5 1 3  = ? ? ? ? ? ? ? ? ? ?
