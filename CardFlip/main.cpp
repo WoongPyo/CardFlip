@@ -5,21 +5,6 @@
 #include <time.h>
 #include "main.h"
 
-#define NUM_OF_CARD 10
-#define MAX_CARD_NUM NUM_OF_CARD/2
-#define	DIGIT_LIMITER 10
-
-#define DISPALY_TAB_BETWEEN_CARDS 5
-#define NUM_LINE 0
-#define CARD_LINE 1
-#define INPUT_LINE 10
-#define EXPLAIN_LINE 11
-#define ANSWER_LINE 4
-#define FLAG_LINE 6
-
-#define TRUE 1
-#define FALSE 0
-
 using namespace std;
 
 
