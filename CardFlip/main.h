@@ -28,6 +28,10 @@
 #define TRUE 1
 #define FALSE 0
 
+enum CardOrder{
+	First = 0,
+	Second
+};
 
 
 void gotoxy(int x, int y);
