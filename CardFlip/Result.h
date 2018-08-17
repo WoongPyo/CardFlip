@@ -5,7 +5,7 @@
 class Result
 {
 private:
-	int correctCount ;
+	int correctCount = 0;
 	
 
 public:
