@@ -1,19 +1,17 @@
 #include "Result.h"
 
-void Result::CorrectOrNot(Choose* choose, Card* card)
+void Result::CorrectOrNot(Choose* choose, Card* card, Print* print)
 {
-	if (card->ReadCards(choose->ReadPlayerInput(FIRST_CARD)) != card->ReadCards(choose->ReadPlayerInput(SECOND_CARD)))
-	{
-		gotoxy(choose->ReadPlayerInput(FIRST_CARD)*DISPALY_TAB_BETWEEN_CARDS, CARD_LINE);
-		std::cout << "бс";
-		gotoxy(choose->ReadPlayerInput(SECOND_CARD)*DISPALY_TAB_BETWEEN_CARDS, CARD_LINE);
-		std::cout << "бс";
-	}
-	else
+	if (card->ReadCards(choose->ReadPlayerInput(FIRST_CARD)) == card->ReadCards(choose->ReadPlayerInput(SECOND_CARD)))
 	{
 		card->SetFlag(choose->ReadPlayerInput(FIRST_CARD));
 		card->SetFlag(choose->ReadPlayerInput(SECOND_CARD));
 		correctCount++;
+	}
+	else
+	{
+		print->FlipCardAgain(choose, FIRST_CARD);
+		print->FlipCardAgain(choose, SECOND_CARD);
 	}
 }
 

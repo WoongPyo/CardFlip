@@ -33,3 +33,16 @@ void Print::EraseExplain()
 	gotoxy(0, EXPLAIN_LINE);
 	std::cout << "                                                                                        ";
 }
+
+void Print::FlipCard(Card* card, Choose* choose, int cardNum)
+{
+	gotoxy(choose->ReadPlayerInput(cardNum) * DISPALY_TAB_BETWEEN_CARDS, CARD_LINE);
+
+	std::cout << card->ReadCards(choose->ReadPlayerInput(cardNum));
+}
+
+void Print::FlipCardAgain(Choose* choose, int cardNum)
+{
+	gotoxy(choose->ReadPlayerInput(cardNum) * DISPALY_TAB_BETWEEN_CARDS, CARD_LINE);
+	std::cout << "бс";
+}

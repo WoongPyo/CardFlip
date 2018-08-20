@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Choose.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="InputOne.cpp" />
     <ClCompile Include="InputTwo.cpp" />
     <ClCompile Include="main.cpp" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="Card.h" />
     <ClInclude Include="Choose.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="InputOne.h" />
     <ClInclude Include="InputTwo.h" />
     <ClInclude Include="main.h" />

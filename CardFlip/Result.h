@@ -1,6 +1,7 @@
 #pragma once
 #include "choose.h"
 #include "Card.h"
+#include "Print.h"
 
 class Result
 {
@@ -9,7 +10,7 @@ private:
 	
 
 public:
-	void CorrectOrNot(Choose* choose, Card* card);
+	void CorrectOrNot(Choose* choose, Card* card, Print* print);
 	int ReadCount();
 };
 
