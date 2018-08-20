@@ -58,7 +58,7 @@ int main()
 		/*	카드가 같으면 카드가 계속해서 보임 <-- 게임 끝날때까지
 			카드가 다르면 카드가 다시 보이지 않음 <-- 전체가 아님
 													이미 맞춘 카드는 그대로 있어야 함.	*/
-		result.CorrectOrNot(&choose,&card);
+		result.CorrectOrNot(&choose,&card); // 선택된 카드 2개가 서로 같은 숫자를 받는지 결과를 확인하고 같으면 계속 열고 flag를 올리고 아닌경우 카드를 뒤집음
 
 		if (result.ReadCount() >= MAX_CARD_NUM)
 			break;
@@ -75,7 +75,7 @@ int main()
 	return 0;
 }
 
-void gotoxy(int x, int y)
+void gotoxy(int x, int y) //커서의 위치를 입력 받아 위치시킴
 {
 	COORD CursorPosition = { (short)x, (short)y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), CursorPosition);
