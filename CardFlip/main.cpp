@@ -14,19 +14,11 @@ int main()
 {
 	Card card;
 	// 숫자당 2개씩 임의의 위치에 들어감
-
 	card.SuffleCards();
-	
 	card.DuplicateCardNumber();
-
 	
 	/*정답 출력 디버깅용*/
-	//for (int i = 0; i < NUM_OF_CARD; ++i)
-	//{
-	//	gotoxy(i*DISPALY_TAB_BETWEEN_CARDS, ANSWER_LINE);
-	//	cout << card.ReadCards(i);
-	//}
-	
+	//PrintAnswer(card);	
 
 	// 뒤집어진 카드를 출력
 	Print print;
@@ -44,10 +36,8 @@ int main()
 		// 플레이어가 1번째 카드를 선택함
 		choose.ChooseCard(&card, FIRST_CARD, &inputOne);
 
-
 		// 첫번재 선택된 카드가 뒤집어짐 <-- 선택된 카드는 그대로 둠
-		print.FlipCard(&card, &choose ,FIRST_CARD);
-		
+		print.FlipCard(&card, &choose ,FIRST_CARD);		
 
 		// 플레이어가 2번재 카드를 선택함
 		choose.ChooseCard(&card, SECOND_CARD, &inputTwo);
@@ -55,7 +45,6 @@ int main()
 		// 선택된 카드가 뒤집어짐 <-- 0.5초 보여줌
 		print.FlipCard(&card, &choose, SECOND_CARD);
 		Sleep(500);
-
 
 		/*	카드가 같으면 카드가 계속해서 보임 <-- 게임 끝날때까지
 			카드가 다르면 카드가 다시 보이지 않음 <-- 전체가 아님
@@ -65,17 +54,28 @@ int main()
 
 		if (result.ReadCount() >= MAX_CARD_NUM)
 			break;
-
-		/*flag*/
-		/*for (int i = 0; i < NUM_OF_CARD; i++) {
-			gotoxy(i*DISPALY_TAB_BETWEEN_CARDS, FLAG_LINE);
-			cout << cardFlag[i];
-		}*/
-		
-
+		/*flag 보이기 디버깅용*/
+		//PrintFlag(card);
 	}
-
 	return 0;
+}
+
+void PrintFlag(Card &card)
+{
+	for (int i = 0; i < NUM_OF_CARD; i++)
+	{
+		gotoxy(i*DISPALY_TAB_BETWEEN_CARDS, FLAG_LINE);
+		cout << card.ReadFlag(i);
+	}
+}
+
+void PrintAnswer(Card &card)
+{
+	for (int i = 0; i < NUM_OF_CARD; ++i)
+	{
+		gotoxy(i*DISPALY_TAB_BETWEEN_CARDS, ANSWER_LINE);
+		cout << card.ReadCards(i);
+	}
 }
 
 void gotoxy(int x, int y) //커서의 위치를 입력 받아 위치시킴

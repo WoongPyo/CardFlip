@@ -32,4 +32,8 @@
 
 void gotoxy(int x, int y);
 
+void PrintAnswer(Card &card);
+
+void PrintFlag(Card &card);
+
 
